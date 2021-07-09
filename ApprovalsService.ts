@@ -6,7 +6,7 @@ export class ApprovalsService {
 	public async getMyApprovals(): Promise<IApproval[]> {
 		return (
 			await this.getData<{ value: IApproval[] }>(
-				"/approvalViews?$top=50&$filter=properties/userRole+eq+'Owner'+and+properties/isActive+eq+'true'+and+properties/isDescending+eq+'true'&api-version=2016-11-01"
+				"/approvalViews?$top=50&$filter=properties/userRole+eq+'Approver'+and+properties/isActive+eq+'true'+and+properties/isDescending+eq+'true'&api-version=2016-11-01"
 			)
 		).value;
 	}
@@ -72,6 +72,7 @@ export class ApprovalsService {
 					headers: {
 						authorization: `Bearer ${accessToken}`,
 						accept: "application/json",
+						"content-type": "application/json",
 					},
 				}
 			);
